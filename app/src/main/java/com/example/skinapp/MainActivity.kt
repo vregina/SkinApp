@@ -1,5 +1,6 @@
 package com.example.skinapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,6 +21,11 @@ class MainActivity : ComponentActivity() {
         installSplashScreen().apply {
             Thread.sleep(1000)
         }
+
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+
+
         setContent {
             SkinAppTheme {
                 // A surface container using the 'background' color from the theme
