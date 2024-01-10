@@ -2,22 +2,16 @@ package com.example.skinapp
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.compose.foundation.Image
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -27,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -47,11 +42,12 @@ class RecoverPasswordActivity : ComponentActivity() {
     fun ForgotPasswordForm() {
         Surface {
             Column(
-                verticalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp)
+                    .background(Color.White)
             ) {
                 LogoImage(logoId = R.drawable.ic_logo_brand)
                 Header(
@@ -59,6 +55,14 @@ class RecoverPasswordActivity : ComponentActivity() {
                     description = "Insira seu email cadastrado, enviaremos um código para atualizar a senha."
                 )
                 EmailEditText("Email", {})
+            }
+            Column(
+                verticalArrangement = Arrangement.Bottom,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
                 SendButton(buttonText = "Enviar") {
                     val intent =
                         Intent(this@RecoverPasswordActivity, RecoveryCodeFragment::class.java)
@@ -71,6 +75,8 @@ class RecoverPasswordActivity : ComponentActivity() {
     @Composable
     fun LogoImage(logoId: Int) {
         Image(
+            modifier = Modifier
+                .padding(top = 36.dp),
             painter = painterResource(id = logoId),
             contentDescription = "Logo do app"
         )
