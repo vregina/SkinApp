@@ -1,6 +1,5 @@
 package com.example.skinapp
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -44,7 +43,7 @@ class RecoverPasswordActivity : ComponentActivity() {
 
     @Composable
     fun ForgotPasswordForm() {
-        Surface {
+        Surface  {
             Column(
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -68,9 +67,11 @@ class RecoverPasswordActivity : ComponentActivity() {
                     .padding(16.dp)
             ) {
                 SendButton(buttonText = "Enviar") {
-                    val intent =
-                        Intent(this@RecoverPasswordActivity, RecoveryCodeFragment::class.java)
-                    startActivity(intent)
+//                    val transaction = fragmentManager.beginTransaction()
+//                    val fragment = RecoverPasswordCodeFragment()
+//                    transaction.replace()
+//                    transaction.addToBackStack(null)
+//                    transaction.commit()
                 }
             }
         }
@@ -91,7 +92,7 @@ class RecoverPasswordActivity : ComponentActivity() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 24.dp),
+                .padding(top = 32.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
@@ -99,6 +100,7 @@ class RecoverPasswordActivity : ComponentActivity() {
                 text = title
             )
             Text(
+                style = MaterialTheme.typography.bodyMedium,
                 color = Color.Gray,
                 text = description
             )
