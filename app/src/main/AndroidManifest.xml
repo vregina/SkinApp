@@ -27,6 +27,11 @@
             android:exported="true"
             android:theme="@style/Theme.SkinApp">
         </activity>
+        <activity
+            android:name=".RecoverPasswordActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SkinApp">
+        </activity>
     </application>
 
 </manifest>

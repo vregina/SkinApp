@@ -17,14 +17,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColorHint="@android:color/darker_gray"
         android:drawableStart="@drawable/ic_users"
         android:drawablePadding="12dp"
+        android:hint="Email"
         android:inputType="textEmailAddress" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:hint="Senha"
+        android:textColorHint="@android:color/darker_gray"
         android:drawableStart="@drawable/ic_padlock"
         android:drawableEnd="@drawable/ic_open_eye"
         android:drawablePadding="12dp"
