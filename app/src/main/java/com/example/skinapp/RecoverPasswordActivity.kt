@@ -21,6 +21,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -54,7 +58,7 @@ class RecoverPasswordActivity : ComponentActivity() {
                     title = "Recuperação de senha",
                     description = "Insira seu email cadastrado, enviaremos um código para atualizar a senha."
                 )
-                EmailEditText("Email", {})
+                EmailEditText()
             }
             Column(
                 verticalArrangement = Arrangement.Bottom,
@@ -104,7 +108,8 @@ class RecoverPasswordActivity : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun EmailEditText(email: String, onChange: (String) -> Unit) {
+    fun EmailEditText() {
+        var text by remember { mutableStateOf("") }
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
@@ -120,8 +125,9 @@ class RecoverPasswordActivity : ComponentActivity() {
                     tint = Color.Gray
                 )
             },
-            value = email,
-            onValueChange = onChange
+            placeholder = { Text("Email") },
+            value = text,
+            onValueChange = { text = it }
         )
     }
 
