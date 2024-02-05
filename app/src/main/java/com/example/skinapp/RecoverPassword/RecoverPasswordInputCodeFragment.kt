@@ -1,4 +1,4 @@
-package com.example.skinapp
+package com.example.skinapp.RecoverPassword
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -41,25 +41,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
+import com.example.skinapp.R
 
 
-class RecoverPasswordCodeFragment() : Fragment() {
-
+class RecoverPasswordInputCodeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return ComposeView(requireContext()).apply {
-            setContent {
-                RecoverPasswordCodeForm()
-            }
+        val view = inflater.inflate(R.layout.recover_password_code_fragment, container, false)
+        view.findViewById<ComposeView>(R.id.cv_recover_password_input_code_container).setContent {
+            RecoverPasswordCode()
         }
+        return view
     }
 
     @Composable
-    fun RecoverPasswordCodeForm() {
+    fun RecoverPasswordCode() {
         Surface {
             Column(
                 verticalArrangement = Arrangement.Top,
@@ -83,9 +83,7 @@ class RecoverPasswordCodeFragment() : Fragment() {
                     .padding(16.dp)
             ) {
                 SendButton(buttonText = "Confirmar") {
-//                    val intent =
-//                        Intent(this@RecoverPasswordActivity, RecoverPasswordCodeFragment::class.java)
-//                    startActivity(intent)
+                    (activity as RecoverFlow).secondStep()
                 }
             }
         }
@@ -102,17 +100,15 @@ class RecoverPasswordCodeFragment() : Fragment() {
     }
 
     @Composable
-    fun Header(title: String) {
-        Column(
+    fun Header(title: String, textAlign: TextAlign = TextAlign.Left) {
+        Text(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 24.dp),
-        ) {
-            Text(
-                style = MaterialTheme.typography.titleLarge,
-                text = title
-            )
-        }
+            text = title,
+            style = MaterialTheme.typography.titleLarge,
+            textAlign = textAlign
+        )
     }
 
     @OptIn(ExperimentalComposeUiApi::class)
@@ -208,7 +204,7 @@ class RecoverPasswordCodeFragment() : Fragment() {
 
     @Preview
     @Composable
-    fun PreviewRecoverPassword() {
-        RecoverPasswordCodeForm()
+    fun PreviewRecoverPasswordCode() {
+        RecoverPasswordCode()
     }
 }

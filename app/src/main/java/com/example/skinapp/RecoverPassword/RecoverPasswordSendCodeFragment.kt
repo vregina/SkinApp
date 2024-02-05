@@ -1,8 +1,10 @@
-package com.example.skinapp
+package com.example.skinapp.RecoverPassword
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,22 +29,31 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.fragment.app.Fragment
+import com.example.skinapp.R
 
-class RecoverPasswordActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
+class RecoverPasswordSendCodeFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val view = inflater.inflate(R.layout.recover_password_send_code_fragment, container, false)
+        view.findViewById<ComposeView>(R.id.cv_recover_password_send_code_container).  setContent {
             ForgotPasswordForm()
         }
+        return view
     }
 
     @Composable
     fun ForgotPasswordForm() {
+        //escafod? em vez de surface com topbar bottom bar
         Surface  {
             Column(
                 verticalArrangement = Arrangement.Top,
@@ -67,11 +78,8 @@ class RecoverPasswordActivity : ComponentActivity() {
                     .padding(16.dp)
             ) {
                 SendButton(buttonText = "Enviar") {
-//                    val transaction = fragmentManager.beginTransaction()
-//                    val fragment = RecoverPasswordCodeFragment()
-//                    transaction.replace()
-//                    transaction.addToBackStack(null)
-//                    transaction.commit()
+                    //navHost
+                    (activity as RecoverFlow).firstStep()
                 }
             }
         }
@@ -107,7 +115,6 @@ class RecoverPasswordActivity : ComponentActivity() {
         }
     }
 
-
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun EmailEditText() {
@@ -122,12 +129,13 @@ class RecoverPasswordActivity : ComponentActivity() {
             ),
             leadingIcon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_users),
+                    painter = painterResource(id = R.drawable.ic_user),
                     contentDescription = null,
                     tint = Color.Gray
                 )
             },
-            placeholder = { Text("Email") },
+            textStyle = MaterialTheme.typography.titleLarge,
+            placeholder = { Text(text = "Email") },
             value = text,
             onValueChange = { text = it }
         )
@@ -146,6 +154,7 @@ class RecoverPasswordActivity : ComponentActivity() {
             onClick = onClick
         ) {
             Text(text = buttonText, fontSize = 18.sp)
+
         }
     }
 
@@ -154,4 +163,5 @@ class RecoverPasswordActivity : ComponentActivity() {
     fun PreviewRecoverPassword() {
         ForgotPasswordForm()
     }
+
 }
