@@ -4,5 +4,4 @@ interface RecoverFlow {
     fun firstStep()
     fun secondStep()
     fun thirdStep()
-
 }

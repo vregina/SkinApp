@@ -23,12 +23,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.SkinApp">
         </activity>
         <activity
-            android:name=".RecoverPasswordActivity"
+            android:name=".RecoverPassword.RecoverPasswordActivity"
             android:exported="true"
             android:theme="@style/Theme.SkinApp">
         </activity>

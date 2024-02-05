@@ -3,11 +3,14 @@ package com.example.skinapp.RecoverPassword
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.skinapp.Feedback.FeedbackFragment
+import com.example.skinapp.Feedback.FeedbackType
 import com.example.skinapp.R
 
 class RecoverPasswordActivity : AppCompatActivity(), RecoverFlow {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.recover_password_activity)
         supportFragmentManager.beginTransaction()
             .replace(R.id.fcv_recover_password_container, RecoverPasswordSendCodeFragment())
@@ -26,7 +29,7 @@ class RecoverPasswordActivity : AppCompatActivity(), RecoverFlow {
     }
 
     override fun thirdStep() {
-//                callNextStep(SuccessFeedback())
+        callNextStep(FeedbackFragment())
     }
 
     fun callNextStep(nextFragment: Fragment) {

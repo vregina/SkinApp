@@ -42,7 +42,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
-import com.example.skinapp.Feedback.FeedbackScreen
 import com.example.skinapp.Feedback.FeedbackType
 import com.example.skinapp.R
 
@@ -89,7 +88,7 @@ class RecoverPasswordRedefinitionFragment : Fragment() {
                     .padding(16.dp)
             ) {
                 SendButton(buttonText = "Redefinir") {
-//                    FeedbackScreen(feedbackType = FeedbackType.Success , feedbackMessage = "Senha redefinida com sucesso!")
+                    (activity as RecoverFlow).thirdStep()
                 }
             }
         }
